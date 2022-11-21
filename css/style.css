@@ -1,95 +1,41 @@
-body {
-  font-family: sans-serif;
-  background: #ffc600;
-}
-
-.container {
-  max-width: 900px;
-  margin: auto;
-}
-
-h1.title {
-  margin-top: 5rem;
-  font-size: 3rem;
-}
-
-#question {
-  margin: 4.5rem;
-  font-size: 1.5rem;
-}
-
-.title,
-#question {
-  text-align: center;
-}
-
-.answer {
-  max-width: 800px;
-  margin: 50px auto;
-  background: white;
-  border-radius: 5px;
-  box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
-  padding: 0;
-}
-
-.item {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #f1f1f1;
-}
-
-.item:last-child {
-  border-bottom: 0;
-}
-
-input:checked + p {
-  background: #1934cf;
-  color: #f1f1f1;
-  border-top-right-radius: 5px;
-}
-
-input[type="radio"] {
-  margin: 20px;
-}
-
-p {
-  margin: 0;
-  padding: 20px;
-  transition: background 0.2s;
-  flex: 1;
-  font-family: "helvetica neue";
-  font-size: 20px;
-  font-weight: 200;
-  border-left: 1px solid #d1e2ff;
-}
-
-.score {
-  text-align: center;
-  padding: 2rem;
-  font-size: 2.2rem;
-}
-
-.btn {
-  display: block;
-  margin: auto;
-  background: #1934cf;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 5px;
-  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.1);
+html {
+  background-color: #FDB833;
   color: #fff;
-  font-size: 1rem;
-  font-weight: 800;
-  cursor: pointer;
+  height: fit-content;
 }
 
-#playAgainBtn {
-  display: none;
+#firstAnswer:hover, #secondAnswer:hover, #thirdAnswer:hover, #forthAnswer:hover {
+  background-color: #700;
+  color: white;
 }
 
-/* Small Screens */
-@media (max-width: 480px) {
-  #question {
-    font-size: 1.2rem;
-  }
+img{
+  position: relative;
+  top: 25%;
+  left: 34.5%;
+  width: 350px;
+  height: 280px;
+  margin: 30px;
+}
+
+#startBtn, .menuBtn, .answerBtn {
+  background-color: #DF2935;
+  font-family: monospace;
+  font-size: 35px;
+  border-radius: 35px;
+  border-style: outset;
+  border-width: 3px;
+  margin: 10px; 
+  padding: 10px;
+  color: black;
+  border-color: black;
+  user-select: none;
+  text-decoration: none;
+}
+
+#startBtn {
+  position: relative;
+  width: 100px;
+  left: 45%;
+  top: 100px;
 }
