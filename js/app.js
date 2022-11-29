@@ -4,6 +4,12 @@ let array;
 
 const optionBtns = document.getElementById('optionBtns');
 
+const easyBtn = document.getElementById('easyBtn');
+const mediumBtn = document.getElementById('mediumBtn');
+const hardBtn = document.getElementById('hardBtn');
+const randomBtn = document.getElementById('randomBtn');
+const menuP = document.getElementById('menuP');
+
 const question = document.getElementById('question');
 const firstAnswer = document.getElementById('firstAnswer');
 const secondAnswer = document.getElementById('secondAnswer');
@@ -14,10 +20,6 @@ const finalP = document.getElementById('finalP');
 
 const start = document.getElementById('startBtn');
 const home = document.getElementById('homeBtn');
-
-var audio = document.getElementById('audio');
-audio.volume = 0.025;
-audio.loop = true;
 
 start.addEventListener('click', evt => {
     optionBtns.style.display = 'block';
@@ -48,6 +50,35 @@ home.addEventListener('click', evt => {
     document.getElementById('finalP').innerHTML = "";
 });
 
+easyBtn.addEventListener('click', evt => {
+  fetchingUrl('difficulty=easy&');
+  easyBtn.style.display = 'none';
+  mediumBtn.style.display = 'none';
+  hardBtn.style.display = 'none';
+  randomBtn.style.display = 'none';
+  menuP.style.display = 'none';
+  home.style.display = 'block';
+  start.style.display = 'none';
+  question.style.display = 'block';
+  firstAnswer.style.display = 'block';
+  secondAnswer.style.display = 'block';
+  thirdAnswer.style.display = 'block';
+  forthAnswer.style.display = 'block';
+  finalP.style.display = 'block';
+});
+
+mediumBtn.addEventListener('click', evt => {
+
+});
+
+hardBtn.addEventListener('click', evt => {
+
+});
+
+randomBtn.addEventListener('click', evt => {
+
+});
+
 const main = () => {
     console.log(data);
     question.innerHTML = data.results[0].question;
@@ -75,7 +106,7 @@ const main = () => {
 };
 
 const fetchingUrl = (level) => {
-    let url='https://opentdb.com/api.php?amount=1&' + level + 'type=multiple';
+    let url='https://opentdb.com/api.php?amount=1&' + level + 'type=multiple'; //WE will update this line of code to get the quesions forom the DB instead.
 
     fetch(url)
     .then(response => response.json())
