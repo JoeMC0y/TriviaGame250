@@ -39,3 +39,64 @@ img{
   left: 45%;
   top: 100px;
 }
+
+
+.menuBtn, .answerBtn {
+  position: relative;
+  width: 100px;
+  left: 42%;
+  top: -20px;
+}
+
+.menuBtn, .answerBtn{
+  width: 200px;
+  text-align: center;
+}
+
+#startBtn:hover, .menuBtn:hover, #homeBtn:hover, .answerBtn:hover {
+  cursor: pointer;
+}
+
+#homeBtn{
+  width: 70px;
+  height: 70px;
+  user-select: none;
+  position: relative;
+  left: 50px;
+  top: -120px;
+}
+
+#optionBtns, #homeBtn, .question, #finalP
+#question, #firstAnswer, #secondAnswer, #thirdAnswer, #forthAnswer {
+  display: none;
+}
+
+.question, #finalP{
+  user-select: none;
+  height: 20px;
+  font-family: monospace;
+  font-size: 30px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  color: dimgrey;
+}
+
+.question {
+  position: relative;
+  top: -30px;
+}
+
+#finalP {
+  position: relative;
+  top: -300px;
+  left: -600px;
+}
+
+#question {
+  font-size: 20px;
+}
+
+#optionBtns {
+  height: 300PX;
+}
