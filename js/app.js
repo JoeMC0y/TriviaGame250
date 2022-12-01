@@ -51,32 +51,71 @@ home.addEventListener('click', evt => {
 });
 
 easyBtn.addEventListener('click', evt => {
-  fetchingUrl('difficulty=easy&');
-  easyBtn.style.display = 'none';
-  mediumBtn.style.display = 'none';
-  hardBtn.style.display = 'none';
-  randomBtn.style.display = 'none';
-  menuP.style.display = 'none';
-  home.style.display = 'block';
-  start.style.display = 'none';
-  question.style.display = 'block';
-  firstAnswer.style.display = 'block';
-  secondAnswer.style.display = 'block';
-  thirdAnswer.style.display = 'block';
-  forthAnswer.style.display = 'block';
-  finalP.style.display = 'block';
+    fetchingUrl('difficulty=easy&');
+    easyBtn.style.display = 'none';
+    mediumBtn.style.display = 'none';
+    hardBtn.style.display = 'none';
+    randomBtn.style.display = 'none';
+    menuP.style.display = 'none';
+    home.style.display = 'block';
+    start.style.display = 'none';
+    question.style.display = 'block';
+    firstAnswer.style.display = 'block';
+    secondAnswer.style.display = 'block';
+    thirdAnswer.style.display = 'block';
+    forthAnswer.style.display = 'block';
+    finalP.style.display = 'block';
 });
 
 mediumBtn.addEventListener('click', evt => {
-
+    fetchingUrl('difficulty=medium&');
+    easyBtn.style.display = 'none';
+    mediumBtn.style.display = 'none';
+    hardBtn.style.display = 'none';
+    randomBtn.style.display = 'none';
+    menuP.style.display = 'none';
+    home.style.display = 'block';
+    start.style.display = 'none';
+    question.style.display = 'block';
+    firstAnswer.style.display = 'block';
+    secondAnswer.style.display = 'block';
+    thirdAnswer.style.display = 'block';
+    forthAnswer.style.display = 'block';
+    finalP.style.display = 'block';
 });
 
 hardBtn.addEventListener('click', evt => {
-
+    fetchingUrl('difficulty=hard&');
+    easyBtn.style.display = 'none';
+    mediumBtn.style.display = 'none';
+    hardBtn.style.display = 'none';
+    randomBtn.style.display = 'none';
+    menuP.style.display = 'none';
+    home.style.display = 'block';
+    start.style.display = 'none';
+    question.style.display = 'block';
+    firstAnswer.style.display = 'block';
+    secondAnswer.style.display = 'block';
+    thirdAnswer.style.display = 'block';
+    forthAnswer.style.display = 'block';
+    finalP.style.display = 'block';
 });
 
 randomBtn.addEventListener('click', evt => {
-
+    fetchingUrl('');
+    easyBtn.style.display = 'none';
+    mediumBtn.style.display = 'none';
+    hardBtn.style.display = 'none';
+    randomBtn.style.display = 'none';
+    menuP.style.display = 'none';
+    home.style.display = 'block';
+    start.style.display = 'none';
+    question.style.display = 'block';
+    firstAnswer.style.display = 'block';
+    secondAnswer.style.display = 'block';
+    thirdAnswer.style.display = 'block';
+    forthAnswer.style.display = 'block';
+    finalP.style.display = 'block';
 });
 
 const main = () => {
