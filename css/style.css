@@ -1,0 +1,78 @@
+:root{
+    background-color: #e3ccc4;
+    font-size: 62.5%;
+
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+
+}
+
+h1 {
+    color: #ff9855;
+    font-size: 6.7rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.Parent{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Start{
+    padding: 1.5rem 0;
+    width: 15rem;
+    border: 0.1em #ff9855 solid;
+    text-decoration: none;
+    color: black;
+    background-color: bisque;
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.Start:hover{
+    cursor: pointer;
+    box-shadow: 0 0.6rem 1rem #ff9855;
+    transform: translateY(-0.1rem);
+    transition: transform 150ms;
+
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-center{
+    justify-content: center;
+    align-items: center;
+}
+
+.answerBtn{
+    border-radius: 0.5rem;
+    font-weight: 600;
+    margin: 0.8rem;
+    padding: 0.4rem 1.2rem;
+    cursor: pointer;
+    background-color: bisque;
+    border: 3px solid #ff9855;
+    font-size: 1.8rem;
+    display: flex;
+}
+
+.answerBtn:hover{
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem #ff9855;
+    transform: translateY(-0.1rem);
+    transition: transform 150ms;
+}
