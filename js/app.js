@@ -1,187 +1,136 @@
-let data;
-let level;
-let array;
+const categorySelect = document.getElementById("category");
+const content = document.getElementById('DisplayQuetion');
+const score = document.getElementById('ShowScore');
+const btn1 = document.getElementById('firstAnswer');
+const btn2 = document.getElementById('secondAnswer');
+const btn3 = document.getElementById('thirdAnswer');
+const btn4 = document.getElementById('forthAnswer');
+const easyBtn = document.getElementById('easyMode');
+const mediumBtn = document.getElementById('mediumMode');
+const hardBtn = document.getElementById('hardMode');
 
-const optionBtns = document.getElementById('optionBtns');
+//Getting the ids of buttons
 
-const easyBtn = document.getElementById('easyBtn');
-const mediumBtn = document.getElementById('mediumBtn');
-const hardBtn = document.getElementById('hardBtn');
-const randomBtn = document.getElementById('randomBtn');
-const menuP = document.getElementById('menuP');
+let increment = 0;
+let userScore = 0;
 
-const question = document.getElementById('question');
-const firstAnswer = document.getElementById('firstAnswer');
-const secondAnswer = document.getElementById('secondAnswer');
-const thirdAnswer = document.getElementById('thirdAnswer');
-const forthAnswer = document.getElementById('forthAnswer');
+let url = null;
+//Indicating number and cat for questions
 
-const finalP = document.getElementById('finalP');
 
-const start = document.getElementById('startBtn');
-const home = document.getElementById('homeBtn');
 
-start.addEventListener('click', evt => {
-    optionBtns.style.display = 'block';
-    menuP.style.display = 'block';
-    home.style.display = 'block';
-    start.style.display = 'none';
-    easyBtn.style.display = 'block';
-    mediumBtn.style.display = 'block';
-    hardBtn.style.display = 'block';
-    randomBtn.style.display = 'block';
-    document.getElementById('finalP').innerHTML = "";
-});
-
-home.addEventListener('click', evt => {
-    optionBtns.style.display = 'none';
-    menuP.style.display = 'none';
-    home.style.display = 'none';
-    start.style.display = 'block';
-    easyBtn.style.display = 'none';
-    mediumBtn.style.display = 'none';
-    hardBtn.style.display = 'none';
-    randomBtn.style.display = 'none';
-    question.style.display = 'none';
-    firstAnswer.style.display = 'none';
-    secondAnswer.style.display = 'none';
-    thirdAnswer.style.display = 'none';
-    forthAnswer.style.display = 'none';
-    document.getElementById('finalP').innerHTML = "";
-});
-
-easyBtn.addEventListener('click', evt => {
-    fetchingUrl('difficulty=easy&');
-    easyBtn.style.display = 'none';
-    mediumBtn.style.display = 'none';
-    hardBtn.style.display = 'none';
-    randomBtn.style.display = 'none';
-    menuP.style.display = 'none';
-    home.style.display = 'block';
-    start.style.display = 'none';
-    question.style.display = 'block';
-    firstAnswer.style.display = 'block';
-    secondAnswer.style.display = 'block';
-    thirdAnswer.style.display = 'block';
-    forthAnswer.style.display = 'block';
-    finalP.style.display = 'block';
-});
-
-mediumBtn.addEventListener('click', evt => {
-    fetchingUrl('difficulty=medium&');
-    easyBtn.style.display = 'none';
-    mediumBtn.style.display = 'none';
-    hardBtn.style.display = 'none';
-    randomBtn.style.display = 'none';
-    menuP.style.display = 'none';
-    home.style.display = 'block';
-    start.style.display = 'none';
-    question.style.display = 'block';
-    firstAnswer.style.display = 'block';
-    secondAnswer.style.display = 'block';
-    thirdAnswer.style.display = 'block';
-    forthAnswer.style.display = 'block';
-    finalP.style.display = 'block';
-});
-
-hardBtn.addEventListener('click', evt => {
-    fetchingUrl('difficulty=hard&');
-    easyBtn.style.display = 'none';
-    mediumBtn.style.display = 'none';
-    hardBtn.style.display = 'none';
-    randomBtn.style.display = 'none';
-    menuP.style.display = 'none';
-    home.style.display = 'block';
-    start.style.display = 'none';
-    question.style.display = 'block';
-    firstAnswer.style.display = 'block';
-    secondAnswer.style.display = 'block';
-    thirdAnswer.style.display = 'block';
-    forthAnswer.style.display = 'block';
-    finalP.style.display = 'block';
-});
-
-randomBtn.addEventListener('click', evt => {
-    fetchingUrl('');
-    easyBtn.style.display = 'none';
-    mediumBtn.style.display = 'none';
-    hardBtn.style.display = 'none';
-    randomBtn.style.display = 'none';
-    menuP.style.display = 'none';
-    home.style.display = 'block';
-    start.style.display = 'none';
-    question.style.display = 'block';
-    firstAnswer.style.display = 'block';
-    secondAnswer.style.display = 'block';
-    thirdAnswer.style.display = 'block';
-    forthAnswer.style.display = 'block';
-    finalP.style.display = 'block';
-});
-
-const main = () => {
-    console.log(data);
-    question.innerHTML = data.results[0].question;
-
-    array = [
-            [data.results[0].correct_answer, "correct"],
-            [data.results[0].incorrect_answers[0], "incorrect"],
-            [data.results[0].incorrect_answers[1], "incorrect"],
-            [data.results[0].incorrect_answers[2], "incorrect"]
-        ];
-
-        array.forEach((element, index) => {
-                let rand = Math.floor(Math.random() * array.length);
-                let a = array[index];
-                let b = array[rand];
-                console.log(index, rand);
-                array[index] = b;
-                array[rand] = a;
-            });
-
-            firstAnswer.innerHTML = array[0][0];
-            secondAnswer.innerHTML = array[1][0];
-            thirdAnswer.innerHTML = array[2][0];
-            forthAnswer.innerHTML = array[3][0];
+const shuffleArr = myArr => {
+    let a, b;
+    for(let i=0; i<myArr.length; i++) {
+        rand=Math.floor(Math.random()*myArr.length);
+        a = myArr[i];
+        b = myArr[rand];
+        myArr[i] = b;
+        myArr[rand] = a;
+    }
+    return myArr;
 };
 
-const fetchingUrl = (level) => {
-    let url='https://opentdb.com/api.php?amount=1&' + level + 'type=multiple'; //WE will update this line of code to get the quesions forom the DB instead.
+//Shuffles my arraylist
 
-    fetch(url)
-    .then(response => response.json())
-    .then(promise_data => {
-        data = promise_data;
-        main(promise_data);
-    });
-
-    const handleClick = evt => {
-        console.log(evt.target.id);
-        if (array[0][1] == 'correct' && evt.target.id == 'firstAnswer') {
-                console.log('you got it right!');
-                finalP.style.display = 'block';
-                document.getElementById('finalP').innerHTML = "Correct!";
-            } else if (array[1][1] == 'correct' && evt.target.id == 'secondAnswer'){
-                console.log('you got it right!');
-                finalP.style.display = 'block';
-                document.getElementById('finalP').innerHTML = "Correct!";
-            } else if (array[2][1] == 'correct' && evt.target.id == 'thirdAnswer'){
-                console.log('you got it right!');
-                finalP.style.display = 'block';
-                document.getElementById('finalP').innerHTML = "Correct!";
-            } else if (array[3][1] == 'correct' && evt.target.id == 'forthAnswer'){
-                console.log('you got it right!');
-                finalP.style.display = 'block';
-                document.getElementById('finalP').innerHTML = "Correct!";
-            } else {
-                console.log('you got it wrong!')
-                finalP.style.display = 'block';
-                document.getElementById('finalP').innerHTML = "Incorrect!";
-            }
-    };
-
-    firstAnswer.addEventListener('click', handleClick);
-    secondAnswer.addEventListener('click', handleClick);
-    thirdAnswer.addEventListener('click', handleClick);
-    forthAnswer.addEventListener('click', handleClick);
-    
+const main = () => {
+    document.getElementById('QuestionDisplay').innerHTML = myData.results[increment].question; //Grabs 1 object in Results Arraylist and with questions and answers
+    myAnswers = [
+        [myData.results[increment].correct_answer, true],
+        [myData.results[increment].incorrect_answers[0], false],
+        [myData.results[increment].incorrect_answers[1], false],
+        [myData.results[increment].incorrect_answers[2], false]
+    ];
+    myAnswers = shuffleArr(myAnswers);
+    btn1.innerHTML = myAnswers[0][0];
+    btn2.innerHTML = myAnswers[1][0];
+    btn3.innerHTML = myAnswers[2][0];
+    btn4.innerHTML = myAnswers[3][0];
 }
+
+
+let gOver = () => {
+    if(increment > 5){
+        window.location.href="gOver.html";
+    }
+}
+
+let Checker = btn => {
+    if(myAnswers[btn][1] == true)
+    {
+        userScore = userScore + 10;
+        increment = increment + 1;
+        score.innerHTML = userScore;
+        main();
+        gOver;
+    }
+    else
+    {
+        userScore = userScore - 10;
+        increment = increment + 1;
+        score.innerHTML = userScore;
+        main();
+        gOver;
+    }
+}
+
+
+//'This' is a reference to the object being clicked
+let check = evt => {
+    try{
+        switch(evt.target.id){
+            case 'firstAnswer':
+                Checker(0);
+                break;
+            case 'secondAnswer':
+                Checker(1);
+                break;
+            case 'thirdAnswer':
+                Checker(2);
+                break;
+            case 'forthAnswer':
+                Checker(3);
+                break;
+        }
+    }catch(e){}
+
+};
+
+let setDifficulty = evt => {
+    try{
+        switch(evt.target.id){
+            case 'easyMode':
+                url = `https://opentdb.com/api.php?amount=10&difficulty=easy`
+            break;
+            case 'mediumMode':
+                url = `https://opentdb.com/api.php?amount=10&difficulty=medium`
+            break;
+            case 'hardMode':
+                url=`https://opentdb.com/api.php?amount=10&difficulty=hard`
+                break;
+            case 'randomMode':
+                Checker(3);
+                break;
+        }
+    }catch(e){}
+
+};
+
+
+fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        myData = data;
+        main();
+});
+
+easyBtn.addEventListener("click", setDifficulty);
+mediumBtn.addEventListener("click", setDifficulty);
+hardBtn.addEventListener("click", setDifficulty);
+
+
+btn1.addEventListener("click", check);
+btn2.addEventListener("click", check);
+btn3.addEventListener("click", check);
+btn4.addEventListener("click", check);
+//window.location.href = "file.html";
