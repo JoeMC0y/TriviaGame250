@@ -20,6 +20,14 @@ h1 {
     margin-bottom: 2rem;
 }
 
+#question{
+    color: #ff9855;
+    font-size: 4rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+
 .Parent{
     width: 100vw;
     height: 100vh;
@@ -75,4 +83,46 @@ h1 {
     box-shadow: 0 0.4rem 1.4rem #ff9855;
     transform: translateY(-0.1rem);
     transition: transform 150ms;
+}
+
+#progressBar{
+    width: 20rem;
+    margin-top: 1.5rem;
+    height: 4rem;
+    border:#ff9855 0.3rem solid;
+
+}
+
+#progressStatus{
+    height: 3.4rem;
+    background-color:#ff9855;
+    width: 0%;
+}
+
+.hudScore{
+    font-size: 2rem;
+    text-align: center; 
+}
+.hudTXT{
+    text-align: center;
+}
+
+#hud{
+    display: flex;
+    justify-content: space-between;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    max-width: 70rem;
+    margin: 0 auto;
+}
+
+.hudParams{
+    font-size: 2rem;
+    text-align: center;
 }

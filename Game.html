@@ -9,17 +9,34 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="Parent">
-        <div id="game" class="flex-column flex-center">
-            <h1 id="question">Placeholder</h1>
-            <h2 id="Category">cat</h2>
-            <div id="firstAnswer" class="answerBtn">choice 1</div>
-            <div id="secondAnswer" class="answerBtn">choice 2</div>
-            <div id="thirdAnswer" class="answerBtn">choice 3</div>
-            <div id="forthAnswer" class="answerBtn">choice 4</div>
+    <div class="container">
+        <div class="flex-column justify-center">
+            <div id="hud">
+                <div id="hud-item">
+                    <div id="progressBarTxt" class="hudParams">1 out of 10</div>
+                    
+                    <div id="progressBar" class="prgBar">
+                        <div id="progressStatus"></div>
+                    </div>
+                </div>
+                <div id="hud-item">
+                    <p class="hudScore">Score: </p>
+                    <div id="score" class="hudTXT"> </div>
+                    </div>
+                </div>
+            </div>
+            <div id="game" class="flex-column flex-center">
+                <h1 id="question">Placeholder</h1>
+                <h2 id="category">cat</h2>
+                <h2 id="difficulty">mode</h2>
+    
+                <div id="firstAnswer" class="answerBtn">choice 1</div>
+                <div id="secondAnswer" class="answerBtn">choice 2</div>
+                <div id="thirdAnswer" class="answerBtn">choice 3</div>
+                <div id="forthAnswer" class="answerBtn">choice 4</div>
+            </div>
         </div>
-
-        <script src="js/app.js"></script>
+        <script src="js/app.js" type="module"></script>
 
 </body>
 </html>

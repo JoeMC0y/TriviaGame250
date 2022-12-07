@@ -1,28 +1,29 @@
-const categorySelect = document.getElementById("category");
-const content = document.getElementById('DisplayQuetion');
-const score = document.getElementById('ShowScore');
 const btn1 = document.getElementById('firstAnswer');
 const btn2 = document.getElementById('secondAnswer');
 const btn3 = document.getElementById('thirdAnswer');
 const btn4 = document.getElementById('forthAnswer');
-const easyBtn = document.getElementById('easyMode');
-const mediumBtn = document.getElementById('mediumMode');
-const hardBtn = document.getElementById('hardMode');
+const cat = document.getElementById("category");
+const difficulty = document.getElementById("difficulty");
+const score = document.getElementById("score");
 
-//Getting the ids of buttons
+const progressTxt = document.getElementById("progressBarTxt");
+const pgStatus = document.getElementById("progressStatus");
+let myData = null;
+let myAnswers = null;
 
 let increment = 0;
 let userScore = 0;
 
-let url = null;
-//Indicating number and cat for questions
+//const fs = require('fs');
 
+var setURL = localStorage.getItem("mo");
+var setMode = localStorage.getItem("mode");
 
 
 const shuffleArr = myArr => {
     let a, b;
     for(let i=0; i<myArr.length; i++) {
-        rand=Math.floor(Math.random()*myArr.length);
+        let rand=Math.floor(Math.random()*myArr.length);
         a = myArr[i];
         b = myArr[rand];
         myArr[i] = b;
@@ -31,10 +32,9 @@ const shuffleArr = myArr => {
     return myArr;
 };
 
-//Shuffles my arraylist
 
 const main = () => {
-    document.getElementById('QuestionDisplay').innerHTML = myData.results[increment].question; //Grabs 1 object in Results Arraylist and with questions and answers
+    document.getElementById('question').innerHTML = myData.results[increment].question; //Grabs 1 object in Results Arraylist and with questions and answers
     myAnswers = [
         [myData.results[increment].correct_answer, true],
         [myData.results[increment].incorrect_answers[0], false],
@@ -42,73 +42,71 @@ const main = () => {
         [myData.results[increment].incorrect_answers[2], false]
     ];
     myAnswers = shuffleArr(myAnswers);
+
+    cat.innerHTML = myData.results[increment].category;
+    difficulty.innerHTML = setMode;
     btn1.innerHTML = myAnswers[0][0];
     btn2.innerHTML = myAnswers[1][0];
     btn3.innerHTML = myAnswers[2][0];
     btn4.innerHTML = myAnswers[3][0];
 }
 
-
-let gOver = () => {
-    if(increment > 5){
-        window.location.href="gOver.html";
-    }
-}
-
 let Checker = btn => {
+    console.log(btn);
+    console.log(myAnswers[btn][1])
     if(myAnswers[btn][1] == true)
     {
         userScore = userScore + 10;
         increment = increment + 1;
+        let currentNum = increment +1;
+        progressTxt.innerHTML = `${currentNum} out of 10`
         score.innerHTML = userScore;
+        pgStatus.style.width = `${(currentNum/10)*100}%`;
         main();
-        gOver;
+        if(currentNum >= 10){
+            localStorage.clear();
+            localStorage.removeItem("mo");
+            localStorage.removeItem("mode");
+            window.location.assign('Home.html')
+        }
     }
     else
     {
         userScore = userScore - 10;
         increment = increment + 1;
+        let currentNum = increment +1;
+        progressTxt.innerHTML = `${currentNum} out of 10`
         score.innerHTML = userScore;
+        pgStatus.style.width = `${(currentNum/10)*100}%`;
         main();
-        gOver;
+        if(currentNum >= 10){
+            localStorage.clear();
+            localStorage.removeItem("mo");
+            localStorage.removeItem("mode");
+            window.location.assign('Home.html')
+        }
     }
 }
 
 
-//'This' is a reference to the object being clicked
 let check = evt => {
     try{
         switch(evt.target.id){
             case 'firstAnswer':
+                console.log("Clicked 1 answer");
                 Checker(0);
                 break;
             case 'secondAnswer':
+                console.log("Clicked 2 answer");
                 Checker(1);
                 break;
             case 'thirdAnswer':
+                console.log("Clicked 3 answer");
                 Checker(2);
                 break;
             case 'forthAnswer':
-                Checker(3);
-                break;
-        }
-    }catch(e){}
+                console.log("Clicked 4 answer");
 
-};
-
-let setDifficulty = evt => {
-    try{
-        switch(evt.target.id){
-            case 'easyMode':
-                url = `https://opentdb.com/api.php?amount=10&difficulty=easy`
-            break;
-            case 'mediumMode':
-                url = `https://opentdb.com/api.php?amount=10&difficulty=medium`
-            break;
-            case 'hardMode':
-                url=`https://opentdb.com/api.php?amount=10&difficulty=hard`
-                break;
-            case 'randomMode':
                 Checker(3);
                 break;
         }
@@ -117,20 +115,46 @@ let setDifficulty = evt => {
 };
 
 
-fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        myData = data;
-        main();
+fetch(setURL)
+.then(response => response.json())
+.then(data => {
+    myData = data;
+    main();
+    saveToDB();
 });
 
-easyBtn.addEventListener("click", setDifficulty);
-mediumBtn.addEventListener("click", setDifficulty);
-hardBtn.addEventListener("click", setDifficulty);
 
+/*
+const saveToDB = () =>{
+    switch(myData.results[0].difficulty){
+        case "easy":
+            const easyJSON = JSON.stringify(myData);
+            writeFile("./easy.json", easyJSON, err => {
+            if (err) throw err}); 
+                console.log("Done writing"); 
+            break;
+        case "medium":
+            const mediumJSON = JSON.stringify(myData);
+            writeFile("./medium.json", mediumJSON, err => {
+                if (err) throw err}); 
+                console.log("Done writing"); 
+            break;
+        case "hard":
+            const hardJSON = JSON.stringify(myData);
+            writeFile("./hard.json", hardJSON, err => {
+                if (err) throw err}); 
+                    console.log("Done writing"); 
+
+            break;
+}
+}
+saveToDB();
+
+*/
 
 btn1.addEventListener("click", check);
 btn2.addEventListener("click", check);
 btn3.addEventListener("click", check);
 btn4.addEventListener("click", check);
-//window.location.href = "file.html";
+
+
